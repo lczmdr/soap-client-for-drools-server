@@ -1,0 +1,20 @@
+Simple SOAP client to use with drools-server
+
+Usage:
+
+String wsdl = "http://localhost:8383/drools-server/kservice/soap?wsdl";
+String namesspaceURI = "http://soap.jax.drools.org/";
+SoapClient client = new SoapClient(wsdl, namesspaceURI);
+
+String cmd = "";
+cmd += "<batch-execution lookup=\"ksession1\">\n";
+cmd += "  <insert out-identifier=\"message\">\n";
+cmd += "      <org.test.Message>\n";
+cmd += "         <text>Helllo World</text>\n";
+cmd += "      </org.test.Message>\n";
+cmd += "   </insert>\n";
+cmd += "   <fire-all-rules/>\n";
+cmd += "</batch-execution>\n";
+
+SOAPMessage response = client.invoke("CommandExecutor", "CommandExecutorPort", "execute", "ns1", cmd);
+String execution = response.getSOAPBody().getValue();
