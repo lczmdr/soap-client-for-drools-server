@@ -1,6 +1,6 @@
 Simple SOAP client to use with drools-server
 
-Usage:
+How to use:
 
 String wsdl = "http://localhost:8383/drools-server/kservice/soap?wsdl";
 String namesspaceURI = "http://soap.jax.drools.org/";
